@@ -5,7 +5,7 @@ var mongoURI = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PW}@cl
 const connectToMongo =  () => {
      mongoose.connect(mongoURI)
      .then( ()=>
-        console.log("Connected successfully")
+        console.log("connected")
     )
 }
 
