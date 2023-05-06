@@ -1,13 +1,15 @@
-const mongoose = require('mongoose');
+const mongoose=require('mongoose')
 require('dotenv').config()
-var mongoURI = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PW}@cluster0.ggnf1l5.mongodb.net/mernchat-app-user?retryWrites=true&w=majority`
-
-const connectToMongo =  () => {
-     mongoose.connect(mongoURI)
-     .then( ()=>
-        console.log("connected to mongo db successfully")
-    )
+mongoose.set('strictQuery',true)
+const connection = async()=>{
+    try {
+       const conn = await mongoose.connect(process.env.URI,{
+        useNewUrlParser:true,
+        useUnifiedTopology:true
+       }) 
+       console.log(`database connected to ${conn.connection.host}`);
+    } catch (error) {
+        console.log(error)
+    }
 }
-
-
-module.exports = connectToMongo;
+module.exports=connection
